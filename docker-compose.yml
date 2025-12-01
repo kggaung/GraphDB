@@ -4,12 +4,16 @@ services:
   graphdb:
     image: ontotext/graphdb:11.1.2
     container_name: graphdb
-    ports:
-      - "7200:7200"
     volumes:
       - graphdb-data:/opt/graphdb/home
     restart: unless-stopped
+    networks:
+      - webproxy
 
 volumes:
   graphdb-data:
+
+networks:
+  webproxy:
+    external: true
 
